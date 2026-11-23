@@ -39,6 +39,16 @@
   run_id
 }
 
+# --- 実行 ID を作る（描画の前などに知りたいとき。repro_run(cfg, run_id = ) に渡せる。記録があれば作り直す）（REPRODUCIBILITY.md 2 節）---
+repro_new_run_id <- function(name) {
+  if (length(name) != 1L || !is.character(name) || !nzchar(name) ||
+        grepl("/", name, fixed = TRUE)) {
+    stop("name は、実行 ID と記録のファイル名の頭に使うので、",
+         "/ を含まない 1 つの名前にしてください（→ docs/REPRODUCIBILITY.md 2 節）", call. = FALSE)
+  }
+  .repro_new_run_id(name, repro_settings()$repro_dir)
+}
+
 # --- YAML をロケールに頼らず UTF-8 として読む（REPRODUCIBILITY.md 4 節）---
 repro_read_yaml <- function(path) {
   text <- rawToChar(readBin(path, what = "raw", n = file.info(path)$size))
@@ -242,7 +252,7 @@ repro_write_csv <- function(table, path, ...) {
 }
 
 # --- 記録を始める（REPRODUCIBILITY.md 2 節）---
-repro_run <- function(cfg, inputs = NULL) {
+repro_run <- function(cfg, inputs = NULL, run_id = NULL) {
   .repro_check_lock_versions()
   settings <- repro_settings()
   tag <- cfg$experiment_name
@@ -257,14 +267,15 @@ repro_run <- function(cfg, inputs = NULL) {
   }
   notebook <- if (isNamespaceLoaded("knitr")) knitr::current_input()
   label <- if (length(notebook) == 1L) tools::file_path_sans_ext(basename(notebook)) else tag
-  run_id <- Sys.getenv("REPRO_RUN_ID", unset = "")
+  given_by <- if (length(run_id) == 1L && nzchar(run_id)) "run_id" else "REPRO_RUN_ID"
+  if (identical(given_by, "REPRO_RUN_ID")) run_id <- Sys.getenv("REPRO_RUN_ID", unset = "")
   if (!nzchar(run_id)) {
     run_id <- .repro_new_run_id(label, settings$repro_dir)
   } else if (grepl("/", run_id, fixed = TRUE)) {
-    stop("REPRO_RUN_ID は、記録のファイル名の頭に使うので、/ を含まない名前にしてください",
+    stop(given_by, " は、記録のファイル名の頭に使うので、/ を含まない名前にしてください",
          "（→ docs/REPRODUCIBILITY.md 2 節）", call. = FALSE)
   } else if (file.exists(file.path(settings$repro_dir, run_id, paste0(run_id, "_run.json")))) {
-    stop("REPRO_RUN_ID=", run_id, " の記録が既にあります。1 回の描画で repro_run() を呼ぶのは",
+    stop(given_by, "=", run_id, " の記録が既にあります。1 回の描画で repro_run() を呼ぶのは",
          " 1 回にしてください（→ docs/REPRODUCIBILITY.md 2 節）", call. = FALSE)
   }
   state <- list(

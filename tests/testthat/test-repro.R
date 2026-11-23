@@ -454,3 +454,20 @@ test_that("renv.lock と版が合えばその SHA-256 が記録に入り、違�
   file.create("outputs")
   expect_error(suppressWarnings(repro_run(cfg)), "cannot open", fixed = TRUE)
 })
+
+# --- 実行 ID は引数 run_id で渡せ（REPRO_RUN_ID より先）、repro_new_run_id() で作れる（REPRODUCIBILITY.md 2 節）---
+test_that("run_id の引数は REPRO_RUN_ID より先に使い、repro_new_run_id で前もって作れる", {
+  cfg <- local_repro_project()
+  run_id <- repro_new_run_id("unit")
+  expect_match(run_id, "^[0-9]{8}_[0-9]{6}_unit_[0-9]{4}$")
+  withr::local_envvar(REPRO_RUN_ID = "from_env_0000")
+  expect_equal(repro_finish(repro_run(cfg, run_id = run_id))$run_id, run_id)
+  expect_error(repro_run(cfg, run_id = run_id),
+               paste0("run_id=", run_id, " の記録が既にあります"), fixed = TRUE)
+  expect_error(repro_run(cfg, run_id = "a/b"),
+               "run_id は、記録のファイル名の頭に使うので", fixed = TRUE)
+  expect_equal(repro_finish(repro_run(cfg))$run_id, "from_env_0000")
+  for (name in list("", "a/b", c("a", "b"), 1)) {
+    expect_error(repro_new_run_id(name), "/ を含まない 1 つの名前", fixed = TRUE)
+  }
+})

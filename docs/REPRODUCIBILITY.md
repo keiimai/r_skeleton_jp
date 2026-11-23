@@ -37,6 +37,7 @@
 - 台帳（`runs.csv`）の列になるのは、`state$ledger` のうち長さ 1 の値だけである。どの実行にもある列と同じ名前は、列にしない（知らせは出ない）
 - 記録を取らないときは設定を `repro.enabled: false` にする（`repro_finish()`・`repro_fail()` は何もしない）
 - 実行 ID は `<YYYYMMDD_HHMMSS>_<名前>_<4 桁の数>`（時刻帯 → 下）で、`outputs/` に書く成果物は、名前の頭に実行 ID を付けるか、実行 ID のフォルダ（`outputs/figures/<run_id>/` など）に入れる。環境変数 `REPRO_RUN_ID` に値があれば、それを実行 ID にする
+- 実行 ID は、`repro_run(cfg, inputs, run_id = )` の引数でも渡せる（引数 → 環境変数 `REPRO_RUN_ID` → 新しく作る、の順）。描画の前などに実行 ID を知りたいときは `repro_new_run_id(名前)` で作り、その値を `run_id` に渡す
 - `<名前>` は、ノートブックを描いている間は `.qmd` の名前、それ以外（チャンクを手で走らせたときや `repro_smoke()`）は設定の `experiment_name` である。記録の `experiment_name`（`repro_runs(experiment = )` で絞る名前）は、どのノートブックが読んでも設定の値のまま残る。次の段が読む `data/interim/`・`data/processed/`・`models/` のファイルは決まった名前で書き、前の段の記録の `artifacts` と次の段の `inputs` の SHA-256 で辿る
 - 実行 ID と記録の時刻は、根の `.env` の `TZ` の時刻帯で付ける（`.env` に無ければ環境変数 `TZ`、それも無ければ `Asia/Tokyo`。`.env` のほかの行は読まない）。`.env` は Git では追跡しない（`Rscript setup.R` が、書き方の見本の `.env.example` を写して作る）。時刻帯は、プロジェクトの初めに `.env` で決めて途中で変えず、共同研究者とも同じにする（実行 ID の名前には時差が入らないので、途中で変えると、実行 ID が実行した順に並ばなくなる）。記録の環境（`environment` の `env` の `TZ`）には、使った時刻帯が残る
 - 描画した HTML は、記録の成果物に載らない
