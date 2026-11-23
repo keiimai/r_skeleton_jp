@@ -1,0 +1,38 @@
+/* --- レポート HTML の見た目（REPRODUCIBILITY.md 1 節）--- */
+
+/* --- 本文の字体と字間（REPRODUCIBILITY.md 1 節）--- */
+body {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+/* --- 見出しの太さと、h2 の上の余白と下線（REPRODUCIBILITY.md 1 節）--- */
+h1, h2, h3, h4 { font-weight: 600; letter-spacing: 0.02em; }
+h2 { margin-top: 2.2em; border-bottom: 1px solid rgba(128, 128, 128, 0.25); padding-bottom: 0.3em; }
+
+/* --- 表の字の大きさ、見出しの下の線、縞模様（REPRODUCIBILITY.md 1 節）--- */
+table { font-size: 0.92em; }
+.table thead th { border-bottom: 2px solid rgba(128, 128, 128, 0.4); }
+table:not(.table-striped) tbody tr:nth-child(even) { background: rgba(128, 128, 128, 0.06); }
+
+/* --- コードの字体と大きさ（REPRODUCIBILITY.md 1 節）--- */
+pre, code {
+  font-family: "SF Mono", "JetBrains Mono", "Menlo", "Consolas", monospace;
+  font-size: 0.88em;
+}
+
+/* --- 数式の字体（REPRODUCIBILITY.md 1 節）--- */
+math { font-family: "STIX Two Math", "Cambria Math", math; }
+
+/* --- 引用（> …）を注意書きとして目立たせる（REPRODUCIBILITY.md 1 節）--- */
+.blockquote {
+  border-left: 4px solid #c0392b;
+  background: rgba(192, 57, 43, 0.06);
+  padding: 0.6em 1em;
+  margin: 1.2em 0;
+  color: inherit;
+}
+
+/* --- 長い出力はスクロールさせる（REPRODUCIBILITY.md 1 節）--- */
+.cell-output-stdout pre { max-height: 28em; overflow-y: auto; }

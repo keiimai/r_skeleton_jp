@@ -1,0 +1,49 @@
+# --- Quarto の共通設定（このフォルダの直下の .qmd に効く）（REPRODUCIBILITY.md 1 節）---
+
+# --- 題名の周りに出す情報（著者・日付・言語・実行 ID。著者は _project_author.yml から読む）（REPRODUCIBILITY.md 1 節）---
+metadata-files:
+  - _project_author.yml
+date: today
+date-modified: last-modified
+date-format: "YYYY-MM-DD"
+lang: ja
+description: '実行 ID: {{< env REPRO_RUN_ID "repro_render() で描くと出る" >}}'
+title-block-banner: true
+
+# --- HTML の書式（1 ファイルで完結させ、コードは折りたたむ）（REPRODUCIBILITY.md 1 節）---
+format:
+  html:
+    css: styles.css
+    theme:
+      light: cosmo
+      dark: darkly
+    page-layout: full
+    fontsize: 1.02em
+    linestretch: 1.6
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    smooth-scroll: true
+    anchor-sections: true
+    code-fold: true
+    code-summary: "コードを表示"
+    code-copy: hover
+    code-tools: true
+    code-line-numbers: true
+    code-overflow: wrap
+    df-print: paged
+    html-math-method: mathml
+    embed-resources: true
+    lightbox: true
+    fig-width: 9
+    fig-height: 6
+    fig-dpi: 200
+    fig-align: center
+    fig-responsive: true
+
+# --- チャンクの警告とメッセージを出し、エラーなら描画を止める（REPRODUCIBILITY.md 1 節）---
+execute:
+  warning: true
+  message: true
+  error: false

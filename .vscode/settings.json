@@ -1,0 +1,5 @@
+// --- R の拡張機能に、言語サーバーを起こさせず、入れるよう促させない（README.md「構成」）---
+{
+    "r.lsp.enabled": false,
+    "r.lsp.promptToInstall": false
+}

@@ -1,0 +1,30 @@
+# --- エディタの書式の決まり（README.md「構成」）---
+
+# --- 上のフォルダの .editorconfig を読まない（README.md「構成」）---
+root = true
+
+# --- すべてのファイルの書式（README.md「構成」）---
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# --- Markdown は行末の空白を残す（README.md「構成」）---
+[*.md]
+trim_trailing_whitespace = false
+
+# --- 表の形のデータは行末の空白を残す（README.md「構成」）---
+[*.{csv,csv2,csvy,tsv,psv,dat,fwf}]
+trim_trailing_whitespace = false
+
+# --- 受け取ったデータには書式の決まりを当てない（README.md「構成」）---
+[data/**]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset

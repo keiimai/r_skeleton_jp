@@ -1,0 +1,12 @@
+linters: linters_with_defaults(
+    line_length_linter(100),
+    object_name_linter(styles = c("snake_case", "SNAKE_CASE")),
+    undesirable_function_linter(c(
+      write.csv = "repro_write_csv() か readr::write_excel_csv() で、BOM 付きの UTF-8 で書く（→ docs/REPRODUCIBILITY.md 4 節）",
+      write.csv2 = "readr::write_excel_csv2() で、BOM 付きの UTF-8 で書く（→ docs/REPRODUCIBILITY.md 4 節）",
+      write_csv = "repro_write_csv() か readr::write_excel_csv() で、BOM 付きの UTF-8 で書く（→ docs/REPRODUCIBILITY.md 4 節）",
+      write_csv2 = "readr::write_excel_csv2() で、BOM 付きの UTF-8 で書く（→ docs/REPRODUCIBILITY.md 4 節）"
+    )),
+    object_usage_linter = NULL,
+    indentation_linter = NULL
+  )

@@ -1,0 +1,104 @@
+# --- Git で追跡しないもの（README.md「構成」）---
+
+# --- 秘密情報（README.md「構成」）---
+.env.*
+*.env
+!.env.example
+.Renviron
+.httr-oauth
+*.pem
+*.key
+secrets.yaml
+secrets.yml
+.Rhistory
+.RDataTmp*
+.Ruserdata
+
+# --- データ（.gitkeep と README.md だけを残す）（README.md「構成」）---
+data/**
+!data/**/
+!data/**/.gitkeep
+!data/README.md
+
+# --- 成果物（.gitkeep だけを残す）（README.md「構成」）---
+models/**
+!models/.gitkeep
+outputs/**
+!outputs/**/
+!outputs/**/.gitkeep
+
+# --- notebooks/ で描画した文書と、描画中の作業ファイル・キャッシュ（README.md「構成」）---
+notebooks/**/*.html
+notebooks/**/*_files/
+notebooks/**/*.pdf
+notebooks/**/*.tex
+notebooks/**/*.rmarkdown
+notebooks/**/*.knit.md
+notebooks/**/*_cache/
+notebooks/**/.quarto
+notebooks/**/.gitignore
+
+# --- Word の文書（README.md「構成」）---
+*.docx
+
+# --- 生データの拡張子（README.md「構成」）---
+*.sav
+*.zsav
+*.por
+*.rds
+*.rda
+*.RData
+*.fst
+*.qs2
+*.dta
+*.sas7bdat
+*.xpt
+*.parquet
+*.feather
+*.arrow
+*.xlsx
+*.xls
+*.xlsm
+*.dbf
+*.accdb
+*.mdb
+*.sqlite
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
+*.csv
+*.tsv
+
+# --- 例外: 再現性の証拠として追跡するもの（README.md「構成」）---
+!docs/definition/*.csv
+
+# --- 音声と動画の拡張子（README.md「構成」）---
+*.m4a
+*.mp4
+*.wav
+*.mp3
+*.flac
+*.aac
+*.ogg
+*.mov
+*.mkv
+*.webm
+*.aiff
+*.aif
+
+# --- R と RStudio が作るファイル（README.md「構成」）---
+.Rproj.user/
+*.Rproj
+Rplots.pdf
+
+# --- 端末ごとの設定（README.md「構成」）---
+.claude/
+.vscode/*
+
+# --- 例外: テンプレートが配る VS Code の設定（README.md「構成」）---
+!.vscode/settings.json
+
+# --- OS とエディタが作るファイル（README.md「構成」）---
+.DS_Store
+*.swp

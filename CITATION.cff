@@ -1,0 +1,20 @@
+# --- 引用の情報（README.md「構成」）---
+
+cff-version: 1.2.0
+title: "R 解析プロジェクトの枠組み"
+message: "このテンプレートを使った成果を公表する際は、下記の情報で引用してください。"
+type: software
+authors:
+  - family-names: "Imai"
+    given-names: "Kei"
+    email: "keiimai1220@gmail.com"
+    affiliation: "The University of Tokyo, Japan"
+abstract: >-
+  研究プロジェクトを起こすためのテンプレート。
+  ディレクトリの構成・ライセンス・記録の雛形（判断の記録・引用の情報・データの置き方）と、再現性の記録層を持つ。記録層は、実行ごとに run_id・読んだファイルの SHA-256・git のコミット・実行環境のスナップショット・使った設定・成果物の SHA-256・全実行の台帳を残す。実行環境は持たず、R の版にもよらない。解析のコードは同梱しない。
+license: MIT
+version: 0.1.0
+date-released: "2026-11-20"
+keywords:
+  - reproducible research
+  - R
