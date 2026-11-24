@@ -48,7 +48,7 @@ tools/            コミット前の検査の本体
 | `.env.example` | `.env` の書き方の見本（`setup.R` が `.env` に写す）。記録の時刻帯は、`.env`（Git で追跡しない）の `TZ` で決める（→ [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) 2 節） |
 | `notebooks/README.md`・`_metadata.yml`・`_project_author.yml`・`styles.css` | ノートブックの書き方と、HTML の書式（→ [`notebooks/README.md`](notebooks/README.md)） |
 | `.gitignore` | 人が書いたものだけを追跡する（[`.gitignore` の説明書](https://git-scm.com/docs/gitignore)）。秘密情報（`.env`・鍵）・データ・成果物・データの形式（CSV・Excel・SPSS・Stata など）を外す（`docs/definition/` の CSV は追跡する）。鍵の `*.key` は Keynote のスライドも外すので、スライドは PDF などに書き出して渡す |
-| `.editorconfig` | 字下げ・改行・文字コードの決まり（[EditorConfig](https://editorconfig.org/)） |
+| `.editorconfig` | 字下げ・改行・文字コードの決まり（[EditorConfig](https://editorconfig.org/)）。新しい種類のファイルの決まりは「プロジェクトが足す書式」の見出しの下に足す（後に書いた節が強いので、`[data/**]` の節を最後に残す） |
 | `.vscode/settings.json` | VS Code の[ワークスペースの設定](https://code.visualstudio.com/docs/configure/settings#_workspace-settings)（R の拡張機能に、言語サーバーを起こさせず、入れるよう促させない） |
 
 ## 記録

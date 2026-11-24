@@ -20,6 +20,8 @@ trim_trailing_whitespace = false
 [*.{csv,csv2,csvy,tsv,psv,dat,fwf}]
 trim_trailing_whitespace = false
 
+# --- プロジェクトが足す書式（`[data/**]` の節より前に置く）（README.md「構成」）---
+
 # --- 受け取ったデータには書式の決まりを当てない（README.md「構成」）---
 [data/**]
 charset = unset
